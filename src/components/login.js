@@ -9,7 +9,7 @@ const Login = (props) => {
   const handleLogin = () => {
     authService.login(form)
       .then(response => {
-        props.history.push('/main')
+        props.history.push('/screenshots')
       })
       .catch(err => {
         console.log(err)
@@ -22,7 +22,7 @@ const Login = (props) => {
         <h2>Login</h2>
         <input type="email" name="email" placeholder="Email" onChange={handleInputs} />
         <input type="password" name="password" placeholder="Password" onChange={handleInputs} />
-        <button onClick={handleLogin}>Login</button>
+        <button id="login" onClick={handleLogin}>Login</button>
       </div>
     </div>
   )

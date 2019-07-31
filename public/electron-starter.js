@@ -1,18 +1,13 @@
 const electron = require('electron');
-const axios = require('axios')
-const FormData = require('form-data');
-const form = new FormData();
 
 
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-
 const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
-const os = require('os');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -21,10 +16,8 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({ width: 800, height: 600 });
-
     // and load the index.html of the app.
     mainWindow.loadURL(isDev ? 'http://localhost:3001' : `file://${path.join(__dirname, '../build/index.html')}`);
-
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
@@ -61,42 +54,3 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-const desktopPath = `${os.userInfo().homedir}/Desktop`;
-const fs = require('fs');
-const nameEn = 'Screen'
-
-
-
-let screenShoots = fs.readdirSync(desktopPath).filter((file) => {
-    return file.indexOf(nameEn) !== -1;
-})
-
-let fullFilePath = []
-for (var i = 0; i < screenShoots.length; i++) {
-    fullFilePath.push(`${desktopPath}/${screenShoots[i]}`)
-}
-
-// fullFilePath.forEach((url, i) => {
-//     fs.readFile(url, (err, imageData) => {
-//         console.log('entra')
-//         if (err) {
-//             console.log(err)
-//         }
-//         form.append(`file${i}`, imageData, {
-//             filepath: url,
-//             contentType: 'multipart/form-data'
-//         })
-//     })
-// })
-
-
-// setTimeout(function() {
-//     axios.post('http://localhost:3000/screenshots', form, {
-//         headers: form.getHeaders(),
-//     }).then(response => {
-//         console.log('success! ', response.data);
-//     }).catch(err => {
-//         console.log(err);
-//     })
-// }, 2000)

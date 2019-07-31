@@ -2,9 +2,11 @@ import React from 'react'
 import useForm from '../hooks/useForm'
 import AuthService from '../services/auth'
 import { Link } from 'react-router-dom'
+import CategoryService from '../services/categories'
 
 const Signup = (props) => {
   const authService = new AuthService()
+  const categoryService = new CategoryService()
   const [form, handleInputs] = useForm()
 
   const handleSignup = () => {
@@ -12,7 +14,12 @@ const Signup = (props) => {
       .then(response => {
         // aqui debería de ir una notificación o un SWAL o un TOASTR
         props.history.push('/login')
+        categoryService.createCategoryByDefault(response)
+        .then(res => {
+          console.log(res)
+        })
       })
+      .catch(err => console.log(err))
       .catch(err => console.log(err))
   }
 
