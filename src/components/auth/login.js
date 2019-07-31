@@ -21,12 +21,12 @@ const Login = (props) => {
     <div>
       <div className="login">
         <h2>Login</h2>
-        <form>
+        <div>
           <input type="email" name="email" placeholder="Email" onChange={handleInputs} />
           <input type="password" name="password" placeholder="Password" onChange={handleInputs} />
           <button id="login" onClick={handleLogin}>Login</button>
           <small>¿No tienes una cuenta? <Link to="/">Entra aquí</Link></small>
-        </form>
+        </div>
       </div>
     </div>
   )

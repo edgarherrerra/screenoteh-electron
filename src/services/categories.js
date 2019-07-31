@@ -15,7 +15,6 @@ class CategoryService {
   createCategory(data) {
     return this.service.post('/new', data)
   }
-
 }
 
 export default CategoryService

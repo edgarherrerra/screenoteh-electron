@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import ScreenshotsService from '../services/screenshots'
+import ScreenshotsService from '../../services/screenshots'
+import Sidebar from '../Sidebar';
 
 const Screenshots = () => {
   const screenshotsService = new ScreenshotsService()
@@ -20,12 +21,16 @@ const Screenshots = () => {
 
   return (
     <div>
-      <h1>Listado de screenshots</h1>
-      {screenshots.map((e, i) => {
-        return (
-          <img src={e.images} key={i} />
-        )
-      })}
+      <Sidebar />
+      <div className="screenshot-container">
+        {screenshots ? screenshots.map((e, i) => {
+          return (
+            <div className="screenshot-box-container" key={i}>
+              <img src={e.images} alt={i} />
+            </div>
+          )
+        }) : ''}
+      </div>
     </div>
   )
 }
