@@ -1,8 +1,8 @@
 import React from 'react'
-import useForm from '../hooks/useForm'
-import AuthService from '../services/auth'
+import useForm from '../../hooks/useForm'
+import AuthService from '../../services/auth'
 import { Link } from 'react-router-dom'
-import CategoryService from '../services/categories'
+import CategoryService from '../../services/categories'
 
 const Signup = (props) => {
   const authService = new AuthService()

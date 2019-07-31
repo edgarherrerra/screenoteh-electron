@@ -1,6 +1,6 @@
 import React from 'react'
-import useForm from '../hooks/useForm'
-import AuthService from '../services/auth'
+import useForm from '../../hooks/useForm'
+import AuthService from '../../services/auth'
 
 const Login = (props) => {
   const authService = new AuthService()

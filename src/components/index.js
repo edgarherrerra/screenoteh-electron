@@ -1,5 +1,4 @@
-export {default as Signup} from './signup'
-export {default as Login} from './login'
-export {default as Main} from './main'
+export {default as Signup} from './auth/signup'
+export {default as Login} from './auth/login'
 export {default as Categories} from './Categories'
 export {default as Screenshots} from './Screenshots'
