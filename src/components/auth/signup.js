@@ -15,22 +15,25 @@ const Signup = (props) => {
         // aqui debería de ir una notificación o un SWAL o un TOASTR
         props.history.push('/login')
         categoryService.createCategoryByDefault(response)
-        .then(res => {
-          console.log(res)
-        })
+          .then(res => {
+            console.log(res)
+          })
       })
       .catch(err => console.log(err))
       .catch(err => console.log(err))
   }
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <input type="text" name="username" placeholder="Name" onChange={e => handleInputs(e)} />
-      <input type="email" name="email" placeholder="Email" onChange={e => handleInputs(e)} />
-      <input type="password" name="password" placeholder="Password" onChange={e => handleInputs(e)} />
-      <button onClick={handleSignup}>Signup</button>
-      <p>¿Ya tienes cuenta? <Link to="/login">Login</Link>  </p>
+    <div className="signup">
+      <h2>Bienvenido a Screenoteh para Mac.</h2>
+      <p>La aplicación con la cual podrás tener un mayor control de tus screenshots</p>
+      <form>
+        <input type="text" name="username" placeholder="Name" onChange={e => handleInputs(e)} />
+        <input type="email" name="email" placeholder="Email" onChange={e => handleInputs(e)} />
+        <input type="password" name="password" placeholder="Password" onChange={e => handleInputs(e)} />
+        <button onClick={handleSignup}>Signup</button>
+        <small>¿Ya tienes cuenta? <Link to="/login">Entra aquí</Link></small>
+      </form>
     </div>
   )
 }

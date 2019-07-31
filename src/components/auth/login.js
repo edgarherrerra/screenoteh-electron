@@ -1,6 +1,7 @@
 import React from 'react'
 import useForm from '../../hooks/useForm'
 import AuthService from '../../services/auth'
+import { Link } from 'react-router-dom'
 
 const Login = (props) => {
   const authService = new AuthService()
@@ -20,9 +21,12 @@ const Login = (props) => {
     <div>
       <div className="login">
         <h2>Login</h2>
-        <input type="email" name="email" placeholder="Email" onChange={handleInputs} />
-        <input type="password" name="password" placeholder="Password" onChange={handleInputs} />
-        <button id="login" onClick={handleLogin}>Login</button>
+        <form>
+          <input type="email" name="email" placeholder="Email" onChange={handleInputs} />
+          <input type="password" name="password" placeholder="Password" onChange={handleInputs} />
+          <button id="login" onClick={handleLogin}>Login</button>
+          <small>¿No tienes una cuenta? <Link to="/">Entra aquí</Link></small>
+        </form>
       </div>
     </div>
   )
