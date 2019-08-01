@@ -20,7 +20,7 @@ const Sidebar = () => {
       .catch(err => {
         console.log(err)
       })
-  }, [userService])
+  }, [])
 
   const handleCategory = () => {
     categoryService.createCategory(form)
@@ -36,10 +36,10 @@ const Sidebar = () => {
 
   const trashButton = (id) => {
     categoryService.deleteOneCategory(id)
-    .then(response => {
-      console.log(response)
-    })
-    .catch(err => console.log(err))
+      .then(response => {
+        console.log(response)
+      })
+      .catch(err => console.log(err))
     console.log('clicked!')
   }
 
@@ -49,7 +49,7 @@ const Sidebar = () => {
       <div className="top-sidebar">
         <h1>{user.username} 🥳</h1>
         <div className="new-category-container">
-        {show ? <button onClick={handleCategory}>Agregar ✅</button> : <button onClick={showInput}>Nueva categoría ✍️</button>}
+          {show ? <button onClick={handleCategory}>Agregar ✅</button> : <button onClick={showInput}>Nueva categoría ✍️</button>}
         </div>
         {show ? <input className="new-category-container-input" type="text" name="categorie" placeholder="Nueva categoría" onChange={e => handleInputs(e)} /> : <input className="hide" type="text" />}
       </div>

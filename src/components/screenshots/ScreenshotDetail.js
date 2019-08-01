@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import ScreenshotsService from '../../services/screenshots'
+import Rightbar from './Rightbar'
+import Horizontalbar from './Horizontalbar';
 
-const ScreenshotDetail = () => {
-  // const screenshotsService = new ScreenshotsService()
-  // const [screenshots, setScreenshots] = useState([])
+const ScreenshotDetail = (props) => {
+  const screenshotsService = new ScreenshotsService()
+  const [screenshots, setScreenshots] = useState({})
 
 
-  // useEffect(() => {
-  //   screenshotsService
-  //     .getOneScreenshot()
-  //     .then(({ data }) => {
-  //       console.log(data)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }, [])
+  useEffect(() => {
+    screenshotsService
+      .getOneScreenshot(props.match.params.id)
+      .then(({ data }) => {
+        setScreenshots(data.screenshot)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
   return (
-    <div>
-      <h1>Detalle</h1>
-      {/* {screenshots ? screenshots.map((e, i) => {
-          return (
-            <div className="screenshot-box-container" key={i}>
-                <img src={e.images} alt={i} />
-            </div>
-          )
-        }) : ''} */}
+    <div className="screenshot-detail">
+      <Horizontalbar />
+      <Rightbar id={screenshots._id} comments={screenshots.comments} />
+      {screenshots ?
+        <div className="image-detail">
+          <img src={screenshots.images} />
+          <ul>
+          </ul>
+        </div>
+        : ''
+      }
     </div>
   )
 }

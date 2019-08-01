@@ -12,8 +12,8 @@ class ScreenshotsService {
     return this.service.get('/screenshots', data)
   }
 
-  getOneScreenshot(data) {
-    return this.service.get('/screenshots/:id', data)
+  getOneScreenshot(id) {
+    return this.service.get(`/screenshot/${id}`, id)
   }
 }
 

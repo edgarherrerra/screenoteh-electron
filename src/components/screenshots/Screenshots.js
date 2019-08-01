@@ -3,7 +3,7 @@ import ScreenshotsService from '../../services/screenshots'
 import Sidebar from '../Sidebar';
 import { Link } from 'react-router-dom'
 
-const Screenshots = (props) => {
+const Screenshots = () => {
   const screenshotsService = new ScreenshotsService()
   const [screenshots, setScreenshots] = useState([])
 
@@ -26,7 +26,7 @@ const Screenshots = (props) => {
       <div className="screenshot-container">
         {screenshots ? screenshots.map((e, i) => {
           return (
-            <Link to="/screenshot" key={i}>
+            <Link to={`/screenshot/${e._id}`} key={i}>
             <div className="screenshot-box-container" >
                 <img src={e.images} alt={i} />
             </div>
