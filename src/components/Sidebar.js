@@ -20,19 +20,27 @@ const Sidebar = () => {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [userService])
 
   const handleCategory = () => {
     categoryService.createCategory(form)
       .then(response => {
         setShow(!show)
-        // aqui debería de ir una notificación o un SWAL o un TOASTR
       })
       .catch(err => console.log(err))
   }
 
   const showInput = () => {
     setShow(!show)
+  }
+
+  const trashButton = (id) => {
+    categoryService.deleteOneCategory(id)
+    .then(response => {
+      console.log(response)
+    })
+    .catch(err => console.log(err))
+    console.log('clicked!')
   }
 
 
@@ -48,7 +56,7 @@ const Sidebar = () => {
       <small>Categorías</small>
       <ul>
         {user.categories ? user.categories.map((e, i) => {
-          return <li key={i}>{e.categorie}</li>
+          return <li key={i}>{e.categorie} <span onClick={() => trashButton(e._id)}> 🗑 </span></li>
         }) : ``}
       </ul>
     </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ScreenshotsService from '../../services/screenshots'
 import Sidebar from '../Sidebar';
+import { Link } from 'react-router-dom'
 
-const Screenshots = () => {
+const Screenshots = (props) => {
   const screenshotsService = new ScreenshotsService()
   const [screenshots, setScreenshots] = useState([])
 
@@ -25,9 +26,11 @@ const Screenshots = () => {
       <div className="screenshot-container">
         {screenshots ? screenshots.map((e, i) => {
           return (
-            <div className="screenshot-box-container" key={i}>
-              <img src={e.images} alt={i} />
+            <Link to="/screenshot" key={i}>
+            <div className="screenshot-box-container" >
+                <img src={e.images} alt={i} />
             </div>
+            </Link>
           )
         }) : ''}
       </div>

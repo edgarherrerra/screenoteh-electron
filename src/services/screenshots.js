@@ -12,6 +12,9 @@ class ScreenshotsService {
     return this.service.get('/screenshots', data)
   }
 
+  getOneScreenshot(data) {
+    return this.service.get('/screenshots/:id', data)
+  }
 }
 
 export default ScreenshotsService

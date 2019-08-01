@@ -1,5 +1,8 @@
 const electron = require('electron');
-
+const axios = require('axios')
+const FormData = require('form-data');
+const form = new FormData();
+const os = require('os');
 
 // Module to control application life.
 const app = electron.app;
@@ -54,3 +57,53 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+const desktopPath = `${os.userInfo().homedir}/Desktop`;
+const fs = require('fs');
+const nameEn = 'Screen'
+
+let screenShoots = fs.readdirSync(desktopPath).filter((file) => {
+
+    return file.indexOf(nameEn) !== -1;
+})
+
+let fullFilePath = []
+for (var i = 0; i < screenShoots.length; i++) {
+    fullFilePath.push(`${desktopPath}/${screenShoots[i]}`)
+    console.log(fullFilePath)
+}
+
+const appendScreenshots = () => {
+    return new Promise((resolve, reject) => {
+        if (fullFilePath.length === 0) return reject(new Error("No hay contenido"))
+        fullFilePath.forEach((url, i) => {
+            fs.readFile(url, (err, imageData) => {
+                if (err) {
+                    console.log(err)
+                }
+                form.append(`file${i}`, imageData, {
+                    filepath: url,
+                    contentType: 'multipart/form-data'
+                })
+                if (i == fullFilePath.length - 1) {
+                    resolve("Done!")
+                }
+
+            })
+        })
+    })
+}
+
+appendScreenshots().then((response) => {
+    console.log(response)
+    axios.post('http://localhost:3000/screenshots', form, {
+        headers: form.getHeaders(),
+    }).then(response => {
+        for (let i = 0; i < fullFilePath.length; i++) {
+            fs.unlinkSync(fullFilePath[i])
+        }
+    }).catch(err => {
+        console.log(err => console.log(err));
+    })
+})

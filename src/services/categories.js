@@ -15,6 +15,10 @@ class CategoryService {
   createCategory(data) {
     return this.service.post('/new', data)
   }
+
+  deleteOneCategory(id) {
+    return this.service.post(`/${id}`, id)
+  }
 }
 
 export default CategoryService
